@@ -20,7 +20,7 @@ void setup() {
   // Sets up the microcontroller to perform faster analog reads
   bit_voicer.setAudioInput(micPin);
   // Start serial communication
-  Serial.begin(9600);
+  Serial.begin(115200);
 }
 
 void loop() {
@@ -54,6 +54,7 @@ void serialEvent() {
 void moveArm() {
   if(bit_voicer.strData == "up") {
     // Move arm up
+    digitalWrite(4, HIGH);
   }
   else if(bit_voicer.strData == "down") {
     // Move arm down
