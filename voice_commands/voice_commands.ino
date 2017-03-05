@@ -12,7 +12,7 @@ byte dataType = 0;
 int micPin = 0;
 // Transmitter pin
 int transPin = 5;
-const int TONE_LENGTH = 10000;
+const int TONE_LENGTH = 3000;
 
 void setup() { 
   // Sets the analog reference to external (AREF pin)
@@ -58,26 +58,22 @@ void serialEvent() {
 
 void moveArm() {
   if(bit_voicer.strData == "up") {
-    // Move arm up
     tone(transPin, 500, TONE_LENGTH);
   }
   else if(bit_voicer.strData == "down") {
-    // Move arm down
     tone(transPin, 1500, TONE_LENGTH);
   }
   else if(bit_voicer.strData == "left") {
-    // Move arm left
     tone(transPin, 2800, TONE_LENGTH);
   }
   else if(bit_voicer.strData == "right") {
-    // Move arm right
     tone(transPin, 3200, TONE_LENGTH);
   }
-  else if(bit_voicer.strData == "handshake") {
-    // Make arm do a handshake
+  else if(bit_voicer.strData == "open") {
+
   }
-  else if(bit_voicer.strData == "high five") {
-    // Make arm do a high five
+  else if(bit_voicer.strData == "close") {
+    
   }
   // Undefined command or no command at all
   else {
