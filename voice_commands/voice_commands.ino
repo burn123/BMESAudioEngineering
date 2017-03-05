@@ -10,6 +10,9 @@ boolean sampleTest = false;
 byte dataType = 0;
 // The pin to read data from
 int micPin = 0;
+// Transmitter pin
+int transPin = 5;
+const int TONE_LENGTH = 10000;
 
 void setup() { 
   // Sets the analog reference to external (AREF pin)
@@ -21,6 +24,8 @@ void setup() {
   bit_voicer.setAudioInput(micPin);
   // Start serial communication
   Serial.begin(115200);
+  // Sets the transmitter pin as output
+  pinMode(transPin, OUTPUT);
 }
 
 void loop() {
@@ -54,16 +59,19 @@ void serialEvent() {
 void moveArm() {
   if(bit_voicer.strData == "up") {
     // Move arm up
-    digitalWrite(4, HIGH);
+    tone(transPin, 500, TONE_LENGTH);
   }
   else if(bit_voicer.strData == "down") {
     // Move arm down
+    tone(transPin, 1500, TONE_LENGTH);
   }
   else if(bit_voicer.strData == "left") {
     // Move arm left
+    tone(transPin, 2800, TONE_LENGTH);
   }
   else if(bit_voicer.strData == "right") {
     // Move arm right
+    tone(transPin, 3200, TONE_LENGTH);
   }
   else if(bit_voicer.strData == "handshake") {
     // Make arm do a handshake
